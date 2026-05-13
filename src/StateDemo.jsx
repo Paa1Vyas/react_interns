@@ -10,7 +10,7 @@ export default function StateDemo() {
         setCount(count - 1);
     }
     useEffect(()=>{
-        if(count % 5 === 0){
+        if(count % 10 === 0){
             alert("Count is a multiple of 5!");
         }
     },[count])

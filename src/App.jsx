@@ -5,6 +5,7 @@ import heroImg from './assets/hero.png'
 import Hello from './Hello'
 import './App.css'
 import StateDemo from './StateDemo'
+import Form from './Form'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,7 +14,8 @@ function App() {
     <>
       {/* <h1>Hello MERN Stack</h1> 
       <Hello name="Paavan" dept="Computer Science"></Hello> */}
-      <StateDemo></StateDemo>
+      {/* <StateDemo></StateDemo> */}
+        <Form></Form>
     </>
   )
 }

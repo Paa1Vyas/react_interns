@@ -11,9 +11,9 @@ function App() {
 
   return (
     <>
-      <h1>Hello MERN Stack</h1>
-      <Hello name="Paavan" dept="Computer Science"></Hello>
-      {/* <StateDemo></StateDemo> */}
+      {/* <h1>Hello MERN Stack</h1> 
+      <Hello name="Paavan" dept="Computer Science"></Hello> */}
+      <StateDemo></StateDemo>
     </>
   )
 }

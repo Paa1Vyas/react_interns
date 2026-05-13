@@ -19,7 +19,8 @@ export default function StateDemo() {
         <button onClick={incrementCount}>Increment Count</button>
         <button onClick={decrementCount}>Decrement Count</button>
         <button onClick={() => setCount(0)}>Reset Count</button>
-        <p>Button clicked:{count}</p>
+        {/* <p>Button clicked:{count}</p> */}
+        <p>Button clicked:{count+10}</p>
     </div>
   )
 }

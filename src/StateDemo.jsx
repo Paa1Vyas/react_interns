@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 
 export default function StateDemo() {
-    const [count, setCount] = useState(0)
+    const [count, setCount] = useState(1)
     function incrementCount() {
         setCount(count + 1);
     }

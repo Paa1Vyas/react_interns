@@ -6,7 +6,7 @@ import Hello from './Hello'
 import './App.css'
 import StateDemo from './StateDemo'
 import Navbar from './Navbar'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Home from './Home'
 import Login from './Login'
 import Profile from './Profile'
@@ -16,25 +16,29 @@ import Dashboard from './Dashboard'
 
 function App() {
   const [count, setCount] = useState(0)
-  let isLoggedin = false;
-  return (
-    <>
-      {/* <h1>Hello MERN Stack</h1> 
-      <Hello name="Paavan" dept="Computer Science"></Hello> */}
-      {/* <StateDemo></StateDemo>
-      <Form></Form> */}
+  const [isLoggedin, setIsLoggedin] = useState(false);
 
-      <Navbar></Navbar>
-      <BrowserRouter>
+  return (
+    <BrowserRouter>
+      <div className="app-container">
+        <Navbar isLoggedin={isLoggedin} setIsLoggedin={setIsLoggedin} />
+        
         <Routes>
           <Route path="/" element={isLoggedin ? <Dashboard /> : <Home/>}></Route>
-          <Route path="/home" element={<Home  />}></Route>
-          <Route path="/form" element={<Form />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/profile" element={<Profile />}></Route>
+          
+          {isLoggedin ? (
+            <>
+              <Route path="/home" element={<Home  />}></Route>
+              <Route path="/form" element={<Form />}></Route>
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/profile" element={<Profile />}></Route>
+            </>
+          ) : (
+            <Route path="*" element={<Navigate to="/" replace />} />
+          )}
         </Routes>
-      </BrowserRouter>
-    </>
+      </div>
+    </BrowserRouter>
   )
 }
 

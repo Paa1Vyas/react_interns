@@ -1,18 +1,35 @@
-import React from 'react'
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
-export default function Navbar() {
-    let isLoggedIn = true;
+export default function Navbar({ isLoggedin, setIsLoggedin }) {
+  const location = useLocation();
+  
   return (
-    <div>
-        <nav className="navbar">
-            <h1>My MERN Stack App</h1>
-            <ul className="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li>{isLoggedIn ? <a href="/profile">Profile</a> : <a href="/login">Login</a>}</li>
-            </ul>
-        </nav>
-    </div>
-  )
+    <nav className="navbar">
+      <h1>MERN Stack</h1>
+      <ul className="nav-links">
+        <li>
+          <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
+        </li>
+        {isLoggedin && (
+          <>
+            <li>
+              <Link to="/form" className={location.pathname === '/form' ? 'active' : ''}>Form</Link>
+            </li>
+            <li>
+              <Link to="/profile" className={location.pathname === '/profile' ? 'active' : ''}>Profile</Link>
+            </li>
+          </>
+        )}
+        <li>
+          <button 
+            className={isLoggedin ? "btn-outline" : "btn-primary"}
+            onClick={() => setIsLoggedin(!isLoggedin)}
+          >
+            {isLoggedin ? 'Logout' : 'Login'}
+          </button>
+        </li>
+      </ul>
+    </nav>
+  );
 }

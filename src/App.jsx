@@ -1,44 +1,84 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import Hello from './Hello'
-import './App.css'
-import StateDemo from './StateDemo'
-import Navbar from './Navbar'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import Home from './Home'
-import Login from './Login'
-import Profile from './Profile'
+import { useState } from "react"
+import { Routes, Route, Navigate } from "react-router-dom"
 
-import Form from './Form'
-import Dashboard from './Dashboard'
+import Navbar from "./components/Navbar"
+
+import Home from "./pages/Home"
+import Login from "./pages/Login"
+import Form from "./pages/Form"
+import Profile from "./pages/Profile"
+
+import "./App.css"
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [isLoggedin, setIsLoggedin] = useState(false);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   return (
-    <BrowserRouter>
-      <div className="app-container">
-        <Navbar isLoggedin={isLoggedin} setIsLoggedin={setIsLoggedin} />
-        
-        <Routes>
-          <Route path="/" element={isLoggedin ? <Dashboard /> : <Home/>}></Route>
-          
-          {isLoggedin ? (
-            <>
-              <Route path="/home" element={<Home  />}></Route>
-              <Route path="/form" element={<Form />}></Route>
-              <Route path="/login" element={<Login />}></Route>
-              <Route path="/profile" element={<Profile />}></Route>
-            </>
-          ) : (
-            <Route path="*" element={<Navigate to="/" replace />} />
-          )}
-        </Routes>
-      </div>
-    </BrowserRouter>
+
+    <div className="zp-app">
+
+      <Navbar
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
+      />
+
+      <Routes>
+
+        <Route
+          path="/"
+          element={
+            <Home isLoggedIn={isLoggedIn} />
+          }
+        />
+
+        <Route
+          path="/login"
+          element={
+
+            isLoggedIn
+            ?
+            <Navigate to="/" />
+
+            :
+
+            <Login
+              setIsLoggedIn={setIsLoggedIn}
+            />
+          }
+        />
+
+        <Route
+          path="/form"
+          element={
+
+            isLoggedIn
+            ?
+            <Form />
+
+            :
+
+            <Navigate to="/login" />
+          }
+        />
+
+        <Route
+          path="/profile"
+          element={
+
+            isLoggedIn
+            ?
+            <Profile />
+
+            :
+
+            <Navigate to="/login" />
+          }
+        />
+
+      </Routes>
+
+    </div>
   )
 }
 

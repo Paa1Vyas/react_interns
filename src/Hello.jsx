@@ -6,6 +6,6 @@ export default function Hello(name_data) {
     let name = name_data.name;
   return (
 
-    <div>Hello {name}, {department}</div>
+    <div>Hello {name_data.name}, {name_data.dept}</div>
   )
 }

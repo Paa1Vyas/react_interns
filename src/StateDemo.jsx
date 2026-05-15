@@ -9,6 +9,8 @@ export default function StateDemo() {
     function decrementCount() {
         setCount(count - 1);
     }
+    f
+    }
     useEffect(()=>{
         if(count % 5 === 0){
             alert("Count is a multiple of 5!");
@@ -19,6 +21,7 @@ export default function StateDemo() {
         <button onClick={incrementCount}>Increment Count</button>
         <button onClick={decrementCount}>Decrement Count</button>
         <button onClick={() => setCount(0)}>Reset Count</button>
+    
         <p>Button clicked:{count}</p>
     </div>
   )

@@ -10,6 +10,7 @@ import About from './About'
 import Contect from './Contect'
 import Login from './Login'
 import { BrowserRouter , Route , Routes} from 'react-router-dom'
+import FatchApi from './FatchApi'
 
 function App() {
   
@@ -28,7 +29,8 @@ function App() {
   <Route path='/Home' element={<Home></Home>}></Route>
   <Route path='/about' element={<About></About>}></Route>
   <Route path='/contect' element={<Contect></Contect>}></Route>
-  <Route path='/dashboard' element={<Login></Login>}></Route>
+  <Route path='/Login' element={<Login></Login>}></Route>
+  <Route path='/FatchApi' element={<FatchApi></FatchApi>}></Route>
 </Routes>
 </BrowserRouter>
       

@@ -10,9 +10,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './Home'
 import Login from './Login'
 import Profile from './Profile'
+import FetchAPI from './FetchAPI'
 
 import Form from './Form'
 import Dashboard from './Dashboard'
+import FetchApiId from './FetchApiId'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -32,6 +35,8 @@ function App() {
           <Route path="/form" element={<Form />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/api/demo" element={<FetchAPI />}></Route>
+          <Route path="/api/demo/:id" element={<FetchApiId />}></Route>
         </Routes>
       </BrowserRouter>
     </>

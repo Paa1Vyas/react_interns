@@ -1,54 +1,44 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Products from "./pages/Products";
-import ProductDetail from "./pages/ProductDetail";
-import Dashboard from "./pages/Dashboard";
-import DashboardOverview from "./pages/DashboardOverview";
-import DashboardStats from "./pages/DashboardStats";
-import DashboardSettings from "./pages/DashboardSettings";
-import Login from "./pages/Login";
-import Profile from "./pages/Profile";
-import NotFound from "./pages/NotFound";
+import { useState, useEffect } from 'react';
+import './App.css';
 
-// Wraps protected pages. Redirects to /login if not authenticated.
-function ProtectedRoute({ children }) {
-  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-  return isLoggedIn ? children : <Navigate to="/login" replace />;
-}
+function App() {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-export default function App() {
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(res => {
+        if (!res.ok) throw new Error('Network failed');
+        return res.json();
+      })
+      .then(data => {
+        setPosts(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p className="status">Loading...</p>;
+  if (error) return <p className="status error">Error: {error}</p>;
+
   return (
-    <>
-      <Navbar />
-      <main>
-        <Routes>
-          {/* Basic Routes */}
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-
-          {/* Dynamic Route */}
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/:id" element={<ProductDetail />} />
-
-          {/* Nested Routes */}
-          <Route path="/dashboard" element={<Dashboard />}>
-            <Route index element={<DashboardOverview />} />
-            <Route path="stats" element={<DashboardStats />} />
-            <Route path="settings" element={<DashboardSettings />} />
-          </Route>
-
-          {/* Auth Routes */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-
-          {/* 404 Catch-All */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-    </>
+    <div className="container">
+      <h1>Posts</h1>
+      <div className="grid">
+        {posts.map(post => (
+          <div key={post.id} className="card">
+            <h2>{post.title}</h2>
+            <p>{post.body}</p>
+            <span className="meta">User {post.userId} • #{post.id}</span>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
+
+export default App;

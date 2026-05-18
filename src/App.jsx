@@ -26,8 +26,7 @@ function App() {
       <Hello name="Paavan" dept="Computer Science"></Hello> */}
       {/* <StateDemo></StateDemo>
       <Form></Form> */}
-
-      <Navbar></Navbar>
+      {/* <Navbar></Navbar>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={isLoggedin ? <Dashboard /> : <Home/>}></Route>
@@ -38,7 +37,9 @@ function App() {
           <Route path="/api/demo" element={<FetchAPI />}></Route>
           <Route path="/api/demo/:id" element={<FetchApiId />}></Route>
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
+      <Home/>
+      <Login/>
     </>
   )
 }

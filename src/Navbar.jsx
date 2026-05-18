@@ -19,6 +19,9 @@ export default function Navbar({ isLoggedin, setIsLoggedin }) {
             <li>
               <Link to="/profile" className={location.pathname === '/profile' ? 'active' : ''}>Profile</Link>
             </li>
+            <li>
+              <Link to="/api-fetch" className={location.pathname === '/api-fetch' ? 'active' : ''}>API Fetch</Link>
+            </li>
           </>
         )}
         <li>

@@ -13,6 +13,7 @@ import Profile from './Profile'
 
 import Form from './Form'
 import Dashboard from './Dashboard'
+import ApiFetchDemo from './ApiFetchDemo'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -32,6 +33,7 @@ function App() {
               <Route path="/form" element={<Form />}></Route>
               <Route path="/login" element={<Login />}></Route>
               <Route path="/profile" element={<Profile />}></Route>
+              <Route path="/api-fetch" element={<ApiFetchDemo />}></Route>
             </>
           ) : (
             <Route path="*" element={<Navigate to="/" replace />} />
